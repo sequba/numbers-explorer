@@ -3,13 +3,19 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'next-root',
   template: `
-    <router-outlet></router-outlet>
+    <div class="page-holder">
+      <router-outlet></router-outlet>
+    </div>
   `,
   styles: [`
-    header {
-      background-image: url("assets/img/header.jpg");
-      background-size: cover;
-      background-position: 50% 30%;
+    .page-holder {
+      min-height: 100vh;
+      min-width: 100vw;
+      background: url("/assets/img/background.jpg");
+      background-size: cover !important;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
     }
   `]
 })
