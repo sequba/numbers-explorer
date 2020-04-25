@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NumbersExtractorService } from '../numbers-extractor/numbers-extractor.service';
 
 @Component({
   selector: 'next-convert',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
       <div class="card p-1 p-sm-4 content">
         <form action="javascript:void(0);" class="form">
           <div class="form-group">
-            <label for="data">Data:</label>
-            <textarea #dataInput name="data" class="form-control" maxlength="999999" cols="200" rows="5" required></textarea>
+            <label for="dataInput">Data:</label>
+            <textarea #dataInput id="dataInput" class="form-control" maxlength="999999" cols="200" rows="5" required></textarea>
           </div>
-          <button (click)="convertData(dataInput.value)" class="btn btn-primary">Convert</button>
+          <div class="form-group">
+            <label for="ageInput">Your age:</label>
+            <input #ageInput id="ageInput" type="number" class="form-control" min="18" required>
+          </div>
+          <button (click)="convertData(dataInput.value, ageInput)" class="btn btn-primary">Convert</button>
         </form>
       </div>
 
@@ -40,11 +45,11 @@ import { Component, OnInit } from '@angular/core';
 export class ConvertComponent implements OnInit {
   extractedNumbers: number[] = [];
 
-  constructor() { }
+  constructor(private extractor: NumbersExtractorService) { }
 
-  convertData(data: string): void {
+  convertData(data: string, input: any): void {
     this.extractedNumbers = [];
-    this.extractedNumbers = [1, 2, 3];
+    this.extractedNumbers = this.extractor.extractNumbers(data);
   }
 
   ngOnInit(): void {
