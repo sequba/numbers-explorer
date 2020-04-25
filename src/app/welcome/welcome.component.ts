@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   `,
   styles: [`
     .welcome-box {
-      width: 14rem;
+      max-width: 14rem;
     }
   `]
 })

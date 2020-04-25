@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 `,
   styles: [`
     .not-found-box {
-      width: 30rem;
+      max-width: 30rem;
     }
   `]
 })
