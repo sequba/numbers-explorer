@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'next-root',
   template: `
-    <div class="page-holder">
+    <div class="d-flex justify-content-center align-items-center page-holder">
       <router-outlet></router-outlet>
     </div>
   `,
