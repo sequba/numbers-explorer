@@ -11,7 +11,6 @@ import { Component, OnInit } from '@angular/core';
   styles: [`
     .welcome-box {
       width: 14rem;
-      background-color: rgba(255, 255, 255, 0.7)
     }
   `]
 })

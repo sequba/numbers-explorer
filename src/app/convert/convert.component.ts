@@ -14,7 +14,10 @@ import { NumbersExtractorService } from '../numbers-extractor/numbers-extractor.
             <label for="ageInput">Your age:</label>
             <input #ageInput id="ageInput" type="number" class="form-control" min="18" required>
           </div>
-          <button (click)="convertData(dataInput.value, ageInput)" class="btn btn-primary">Convert</button>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <button (click)="convertData(dataInput.value, [dataInput, ageInput])" class="btn btn-primary">Convert</button>
+            <a routerLink="/">Home</a>
+          </div>
         </form>
       </div>
 
@@ -33,12 +36,8 @@ import { NumbersExtractorService } from '../numbers-extractor/numbers-extractor.
   `,
   styles: [`
     .content {
-      max-width: 40rem;
+      max-width: 60rem;
       margin: 1rem;
-    }
-
-    textarea {
-      resize: none;
     }
   `]
 })
@@ -47,9 +46,12 @@ export class ConvertComponent implements OnInit {
 
   constructor(private extractor: NumbersExtractorService) { }
 
-  convertData(data: string, input: any): void {
-    this.extractedNumbers = [];
-    this.extractedNumbers = this.extractor.extractNumbers(data);
+  convertData(data: string, inputs: HTMLInputElement[]): void {
+    this.extractedNumbers = this.isFormValid(inputs) ? this.extractor.extractNumbers(data) : [];
+  }
+
+  private isFormValid(inputs: HTMLInputElement[]): boolean {
+    return inputs.every(input => input.checkValidity());
   }
 
   ngOnInit(): void {
